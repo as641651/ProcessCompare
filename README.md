@@ -1,2 +1,2 @@
-# ProcessCompare
-A Python library for comparing process models
+# Variants Compare
+A Python library for comparing variants in a process.
