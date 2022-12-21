@@ -9,7 +9,7 @@ setup(
     description="A python library for comparing variants in a process",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='https://github.com/as641651/ProcessCompare,
+    url='https://github.com/as641651/VariantsCompare',
     author='Aravind Sankaran',
     author_email='aravindsankaran22@gmail.com',
     packages= find_packages(), # finds packages inside current directory

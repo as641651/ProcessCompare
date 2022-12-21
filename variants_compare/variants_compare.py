@@ -2,6 +2,7 @@ import pm4py
 from pm4py.objects.log.obj import EventLog
 from typing import List
 from .dfg_compare import DFGCompare, gviz_dfg_diff
+from pm4py.visualization.petri_net import visualizer as pn_visualizer
 
 class VariantsCompare:
     def __init__(self, log:EventLog, variants_best:List, variants_worst:List, 
@@ -11,6 +12,7 @@ class VariantsCompare:
         self.variants = variants_best + variants_worst
         self.best = variants_best.copy()
         self.worst = variants_worst.copy()
+        self.variants_id_key = variants_id_key
         
         self.log_filtered = pm4py.filter_log(lambda x: x.attributes[variants_id_key] in self.variants, log)
         self.log_best = pm4py.filter_log(lambda x: x.attributes[variants_id_key] in self.best, self.log_filtered)
@@ -21,6 +23,10 @@ class VariantsCompare:
         # Footprints compare
         # Petrinets compare
                  
-       
+    def show_petrinet(self, variants_list:List, activity_key='concept:name'):
+        log = pm4py.filter_log(lambda x: x.attributes[self.variants_id_key] in variants_list, self.log_filtered)
+        net, im, fm = pm4py.discover_petri_net_inductive(log,activity_key=activity_key)
+        return pn_visualizer.apply(net,im,fm)
+
     def get_dfg_minus_best(self):
         return gviz_dfg_diff(self.dfg_compare.get_dfg(), self.dfg_compare.get_dfg_best())

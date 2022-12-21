@@ -17,24 +17,39 @@ def gviz_dfg_diff(dfg1:Digraph, dfg2:Digraph, node_color='#F0B4B6', edge_color='
     for node in g1.nodes():
         #skip start and end nodes
         if '@@' not in node.name:
-            label = node.attr['label'].split(') (')[0]+')'
+            
+            for i in range(3,6):
+                if node.attr['label'][-i] == '(':     
+                    label = node.attr['label'][:-i]
+                    break
+
             g1_node_id[label] = node.name
             g1_node_label[node.name] = label
+        else:
+            g1_node_id[node.name] = node.name
+            g1_node_label[node.name] = node.name
             
     g2_node_id = {}
     for node in g2.nodes():
         #skip start and end nodes
         if '@@' not in node.name:
-            g2_node_id[node.attr['label'].split(') (')[0]+')'] = node.name
+            for i in range(3,6):
+                if node.attr['label'][-i] == '(':     
+                    label = node.attr['label'][:-i]
+                    break
+            g2_node_id[label] = node.name
+        else:
+            g2_node_id[node.name] = node.name
         
     # Node subtraction
     for k,v in g1_node_id.items():
-        node = g1.get_node(v)
-        node.attr['label'] = k
-        if k not in list(g2_node_id.keys()):
-            node.attr['fillcolor'] = node_color
-        else:
-            node.attr['fillcolor'] = '#FFFFFF'
+        if "@@" not in k:
+            node = g1.get_node(v)
+            node.attr['label'] = k
+            if k not in list(g2_node_id.keys()):
+                node.attr['fillcolor'] = node_color
+            else:
+                node.attr['fillcolor'] = '#FFFFFF'
             
     # Edge subtraction
     for edge in g1.edges():
