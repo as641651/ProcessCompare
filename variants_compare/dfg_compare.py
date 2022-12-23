@@ -6,7 +6,12 @@ import pm4py
 from pm4py.visualization.dfg import visualizer as dfg_visualizer
 from typing import Dict
 
-def gviz_dfg_diff(dfg1:Digraph, dfg2:Digraph, node_color='#F0B4B6', edge_color='red'):
+def gviz_dfg_diff(dfg1:Digraph,
+                  dfg2:Digraph, 
+                  node_color='#F0B4B6',
+                  edge_color='red',
+                  orientation='TD'):
+
     """DFG difference: dfg1 - dfg2"""
     
     g1 = pgv.AGraph(dfg1.source)
@@ -68,7 +73,7 @@ def gviz_dfg_diff(dfg1:Digraph, dfg2:Digraph, node_color='#F0B4B6', edge_color='
         except KeyError: #happens for nodes that doesnt exist in g2
             edge.attr['color'] = edge_color
         
-            
+    g1.graph_attr['rankdir'] = orientation
     return graphviz.Source(g1.string())
 
 

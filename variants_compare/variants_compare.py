@@ -28,5 +28,5 @@ class VariantsCompare:
         net, im, fm = pm4py.discover_petri_net_inductive(log,activity_key=activity_key)
         return pn_visualizer.apply(net,im,fm)
 
-    def get_dfg_minus_best(self):
-        return gviz_dfg_diff(self.dfg_compare.get_dfg(), self.dfg_compare.get_dfg_best())
+    def get_dfg_minus_best(self, orientation='TD'):
+        return gviz_dfg_diff(self.dfg_compare.get_dfg(), self.dfg_compare.get_dfg_best(),orientation=orientation)
