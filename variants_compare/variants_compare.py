@@ -1,7 +1,7 @@
 import pm4py
 from pm4py.objects.log.obj import EventLog
 from typing import List
-from .dfg_compare import DFGCompare, gviz_dfg_diff, gviz_dfg_diff2
+from .dfg_compare import DFGCompare, gviz_dfg_diff, gviz_dfg_diff2, gviz_dfg_diff_data
 from pm4py.visualization.petri_net import visualizer as pn_visualizer
 
 class VariantsCompare:
@@ -36,3 +36,8 @@ class VariantsCompare:
                             self.dfg_compare.get_dfg_best(), 
                             self.dfg_compare.get_dfg_worst(),
                             orientation=orientation)
+
+    def get_diff_data(self):
+        return gviz_dfg_diff_data(self.dfg_compare.get_dfg(), 
+                            self.dfg_compare.get_dfg_best(), 
+                            self.dfg_compare.get_dfg_worst())
