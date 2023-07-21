@@ -24,7 +24,7 @@ def gviz_dfg_diff(dfg1:Digraph,
         #skip start and end nodes
         if '@@' not in node.name:
             
-            for i in range(3,6):
+            for i in range(3,15):
                 if node.attr['label'][-i] == '(':     
                     label = node.attr['label'][:-i]
                     break
@@ -39,7 +39,7 @@ def gviz_dfg_diff(dfg1:Digraph,
     for node in g2.nodes():
         #skip start and end nodes
         if '@@' not in node.name:
-            for i in range(3,6):
+            for i in range(3,15):
                 if node.attr['label'][-i] == '(':     
                     label = node.attr['label'][:-i]
                     break
@@ -98,7 +98,7 @@ def gviz_dfg_diff2(dfg1:Digraph,
         #skip start and end nodes
         if '@@' not in node.name:
             
-            for i in range(3,6):
+            for i in range(3,15):
                 if node.attr['label'][-i] == '(':     
                     label = node.attr['label'][:-i]
                     break
@@ -113,7 +113,7 @@ def gviz_dfg_diff2(dfg1:Digraph,
     for node in g2.nodes():
         #skip start and end nodes
         if '@@' not in node.name:
-            for i in range(3,6):
+            for i in range(3,15):
                 if node.attr['label'][-i] == '(':     
                     label = node.attr['label'][:-i]
                     break
@@ -125,7 +125,7 @@ def gviz_dfg_diff2(dfg1:Digraph,
     for node in g3.nodes():
         #skip start and end nodes
         if '@@' not in node.name:
-            for i in range(3,6):
+            for i in range(3,15):
                 if node.attr['label'][-i] == '(':     
                     label = node.attr['label'][:-i]
                     break
@@ -147,6 +147,7 @@ def gviz_dfg_diff2(dfg1:Digraph,
             
     # Edge subtraction
     for edge in g1.edges():
+        edge.attr['label'] = ''
         n1_label = g1.get_node(edge[0]).attr['label']
         n2_label = g1.get_node(edge[1]).attr['label']
         
@@ -189,7 +190,7 @@ def gviz_dfg_diff_data(dfg1:Digraph,
         #skip start and end nodes
         if '@@' not in node.name:
             
-            for i in range(3,6):
+            for i in range(3,15):
                 if node.attr['label'][-i] == '(':     
                     label = node.attr['label'][:-i]
                     break
@@ -204,7 +205,7 @@ def gviz_dfg_diff_data(dfg1:Digraph,
     for node in g2.nodes():
         #skip start and end nodes
         if '@@' not in node.name:
-            for i in range(3,6):
+            for i in range(3,15):
                 if node.attr['label'][-i] == '(':     
                     label = node.attr['label'][:-i]
                     break
@@ -216,7 +217,7 @@ def gviz_dfg_diff_data(dfg1:Digraph,
     for node in g3.nodes():
         #skip start and end nodes
         if '@@' not in node.name:
-            for i in range(3,6):
+            for i in range(3,15):
                 if node.attr['label'][-i] == '(':     
                     label = node.attr['label'][:-i]
                     break
